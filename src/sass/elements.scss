@@ -1,0 +1,6 @@
+.list.horizontal li {
+  display: list-item;
+  @media (min-width: 641px) {
+    display: inline;
+  }
+}

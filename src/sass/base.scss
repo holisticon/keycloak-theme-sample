@@ -1,0 +1,193 @@
+$path: "./images/";
+@import "mixins";
+@import "theming/holisticon/main";
+@media (min-width: 769px) {
+  #global-header .header-wrapper .header-global .header-logo {
+    width: auto;
+  }
+}
+
+:root {
+  font-size: 62.5%;
+  font-family: $font-family-base;
+}
+
+.lte-ie8 #global-header .header-wrapper .header-global .header-logo {
+  width: auto;
+}
+
+a {
+  text-decoration: underline;
+}
+
+html {
+  height: 100%;
+  color: $holi-black;
+}
+
+.ka-body {
+  height: 100%;
+
+  a {
+    text-decoration: none;
+  }
+
+  .ka-header {
+    .ka-navbar {
+      margin: 0;
+    }
+    .navbar-nav {
+      float: right;
+      margin: 0;
+    }
+  }
+
+  .ka-container {
+    color: $holi-black;
+
+    .ka-sidebar {
+      background-color: $brand-secondary;
+
+      ul {
+        list-style: none;
+        padding-left: 12px;
+
+        li {
+          margin-top: 0.5em;
+          margin-bottom: 0.5em;
+          margin-left: -1em;
+
+          a {
+            font-size: 14px;
+            padding-left: 25px;
+            line-height: 28px;
+            display: block;
+          }
+
+          &.active a {
+            background-color: $holi-white;
+            border-color: $holi-deepsky;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+    .ka-content-area {
+      background-color: $body-bg;
+    }
+  }
+}
+
+.kl-body::before {
+  content: "";
+  position: fixed;
+  left: 50%;
+  right: 0;
+  z-index: -10;
+
+  display: block;
+  background-image: url("../vendor/images/holi-typing-slowmotion.gif");
+  background-size: 100%;
+  width: 140%;
+  height: 100vh;
+  border-radius: 0 0 50% 50%;
+  transform: translateX(-50%);
+}
+
+
+#kl-heading {
+  &::before {
+    content: " ";
+    display: table;
+  }
+  &::after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  position: relative;
+  line-height: 1.3em;
+  float: left;
+  display: block;
+  padding: 5px 20px;
+  margin-right: 20px;
+  margin-left: 30px;
+}
+
+div#kl-content-wrapper h1#error-summary-heading-example-1.heading-medium.error-summary-heading {
+  font-size: 2.4rem;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-transform: uppercase;
+}
+
+.kl-logo-wrapper {
+  padding-top: 100px;
+}
+
+.kl-logo {
+  width: 560px;
+  height: 80px;
+  margin: 0 auto 30px auto;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background: url("../vendor/images/logo.svg?0.1.0") no-repeat scroll center center / contain;
+}
+
+.kl-main-wrapper {
+  min-height: 100%;
+  margin: 0 auto -70px;
+  
+  div.kl-cookie-message {
+    text-align: center;
+  }
+}
+
+.kl-container {
+  width: 340px;
+  padding: 10px;
+  margin: 0 auto;
+  background: $brand-accent;
+}
+
+.kl-form-login {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+}
+
+.form-label-bold {
+  text-align: left;
+  color: white;
+  text-transform: uppercase;
+}
+
+.kl-form-button {
+  text-align: right;
+  
+  div>input.btn.btn-primary.btn-lg {
+    border-radius: 26px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: $brand-accent;
+    transform: translateY(1rem);
+  }
+}
+
+
+
+.kl-cookie-message {
+  padding-top: 20px;
+}
+
+#footer {
+  display: block;
+  height: 70px;
+}
+.footer-wrapper {
+  text-align: center;
+}

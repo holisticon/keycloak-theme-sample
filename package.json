@@ -1,0 +1,48 @@
+{
+    "name": "@holisticon/keycloak-theme",
+    "version": "1.0.2",
+    "scripts": {
+        "start": "npm run watch",
+        "watch": "watch 'npm run build' ./src/",
+        "build": "npm-run-all build:assets build:sass",
+        "build:assets": "npm-run-all build:static build:assets:images build:assets:fonts build:sass",
+        "build:static": "mkdir -p dist/holisticon/account/resources/css/ && mkdir -p dist/holisticon/email/ && mkdir -p dist/holisticon/ && cp -R src/holisticon/ dist/holisticon && cp package.json dist/holisticon/",
+        "build:assets:images": "mkdir -p dist/holisticon/email/resources/vendor/images && mkdir -p dist/holisticon/login/resources/vendor/images && cp -R src/images/ dist/holisticon/email/resources/vendor/images && cp -R src/images/ dist/holisticon/login/resources/vendor/images",
+        "build:assets:fonts": "mkdir -p dist/holisticon/email/resources/vendor/fonts && mkdir -p dist/holisticon/login/resources/vendor/fonts && cp -R node_modules/font-awesome/fonts/ dist/holisticon/email/resources/vendor/fonts && cp -R node_modules/font-awesome/fonts/ dist/holisticon/login/resources/vendor/fonts",
+        "build:sass": "mkdir -p dist/holisticon/account/resources/css && mkdir -p dist/holisticon/login/resources/css && npm-run-all build:sass:fonts build:sass:base build:sass:elements build:sass:elements-ie6 build:sass:elements-ie7 build:sass:elements-ie8",
+        "build:sass:fonts": "npm-sass src/sass/fonts.scss > dist/holisticon/login/resources/css/fonts.css && cp -R dist/holisticon/login/resources/css/fonts.css dist/holisticon/account/resources/css/",
+        "build:sass:base": "npm-sass src/sass/base.scss > dist/holisticon/login/resources/css/base.css && cp -R dist/holisticon/login/resources/css/base.css dist/holisticon/account/resources/css/",
+        "build:sass:elements": "npm-sass src/sass/elements.scss > dist/holisticon/login/resources/css/elements.css && cp -R dist/holisticon/login/resources/css/elements.css dist/holisticon/account/resources/css/",
+        "build:sass:elements-ie6": "npm-sass src/sass/elements-ie6.scss > dist/holisticon/login/resources/css/elements-ie6.css && cp -R dist/holisticon/login/resources/css/elements-ie6.css dist/holisticon/account/resources/css/",
+        "build:sass:elements-ie7": "npm-sass src/sass/elements-ie7.scss > dist/holisticon/login/resources/css/elements-ie7.css && cp -R dist/holisticon/login/resources/css/elements-ie7.css dist/holisticon/account/resources/css/",
+        "build:sass:elements-ie8": "npm-sass src/sass/elements-ie8.scss > dist/holisticon/login/resources/css/elements-ie8.css && cp -R dist/holisticon/login/resources/css/elements-ie8.css dist/holisticon/account/resources/css/",
+        "dist": "mkdir -p dist && npm-run-all dist:holisticon",
+        "dist:holisticon": "tar -czf dist/holisticon.tar.gz dist/holisticon/",
+        "test": "npm run test:unit && npm run test:end2end",
+        "test:unit": "sass-lint src/sass/",
+        "test:end2end": "jasmine-node --junit test/end2end/ && mkdir -p target && mv junitresults.xml target/",
+        "clean": "rm -rf dist/ && mkdir -p dist/holisticon && npm i",
+        "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+        "changelog:add": "git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md'",
+        "release": "npm run test && npm run changelog && npm run changelog:add",
+        "release:major": "npm version major && npm run release && npm run version-and-push",
+        "release:minor": "npm version minor && npm run release && npm run version-and-push",
+        "release:patch": "npm version patch && npm run release && npm run version-and-push",
+        "version-and-push": "git push origin && git push origin --tags"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "bootstrap-sass": "3.3.7",
+        "conventional-changelog-cli": "2.0.0",
+        "font-awesome": "4.7.0",
+        "jasmine-node": "^2.0.1",
+        "npm-run-all": "4.0.2",
+        "npm-sass": "2.2.1",
+        "request": "^2.88.0",
+        "sass-lint": "^1.12.1",
+        "watch": "1.0.2"
+    },
+    "publishConfig": {
+        "registry": "https://nexus.holisticon.de/repository/npm-private/"
+    }
+}
