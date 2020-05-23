@@ -1,6 +1,6 @@
 {
     "name": "@holisticon/keycloak-theme",
-    "version": "1.0.2",
+    "version": "1.0.0",
     "scripts": {
         "start": "npm run watch",
         "watch": "watch 'npm run build' ./src/",
@@ -41,8 +41,5 @@
         "request": "^2.88.0",
         "sass-lint": "^1.12.1",
         "watch": "1.0.2"
-    },
-    "publishConfig": {
-        "registry": "https://nexus.holisticon.de/repository/npm-private/"
     }
 }
