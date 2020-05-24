@@ -21,6 +21,7 @@
     <form action="${url.loginAction}" class="${properties.kcFormClass!}" id="kc-totp-settings-form" method="post">
         <div class="${properties.kcFormGroupClass!}">
             <div class="${properties.kcLabelWrapperClass!}">
+                
                 <label for="totp" class="${properties.kcLabelClass!}">${msg("loginTotpOneTime")}</label>
             </div>
             <div class="${properties.kcInputWrapperClass!}">
