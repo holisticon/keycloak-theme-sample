@@ -1,0 +1,11 @@
+@media screen and (max-width: 414px) {
+  body {
+    background: #fff;
+    align-items: flex-start;
+  }
+  .keycloak-window {
+    width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

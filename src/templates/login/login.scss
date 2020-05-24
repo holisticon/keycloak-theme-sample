@@ -1,0 +1,184 @@
+@import "../../sass/variables";
+@import "../../sass/base";
+
+body {
+  display: flex;
+
+  &.vendetta {
+    background: url("${url.resourcesPath}/images/v.jpg") repeat;
+  }
+}
+
+.keycloak-window {
+  background: $holi-white;
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.25);
+  border-radius: $container-radius;
+  width: $container-width;
+  overflow: hidden;
+
+  .keycloak-header {
+    background: $holi-silver;
+    height: $header-height;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.error {
+    .keycloak-header {
+      background-color: $holi-sunrise;
+    }
+
+    position: relative;
+    animation: 0.35s ease-out 0s 1 wrong-log;
+
+    @keyframes wrong-log {
+      0%,
+      100% {
+        left: 0;
+      }
+      20%,
+      60% {
+        left: 10px;
+      }
+      40%,
+      80% {
+        left: -10px;
+      }
+    }
+  }
+
+  &.error,
+  &.warning,
+  &.success,
+  &.info {
+    .keycloak-body {
+      padding-top: $base-padding / 2;
+    }
+  }
+
+  .keycloak-body {
+    padding: $base-padding;
+
+    .messages {
+      //font-size: $secondary-font-size;
+      text-align: center;
+      margin-bottom: $base-padding / 2;
+
+      .success {
+      }
+      .info {
+      }
+      .warning {
+      }
+      .error {
+        color: $holi-sunrise;
+      }
+    }
+  }
+}
+
+.keycloak-back,
+.keycloak-footer {
+  a,
+  a:visited {
+    padding: $base-padding / 4;
+    display: inline-block;
+    color: $holi-silver;
+    font-size: $secondary-font-size;
+    transition: color ease-out $transition-speed;
+    text-decoration: none;
+
+    &:focus,
+    &:hover {
+      color: darken($holi-silver, 10%);
+    }
+  }
+}
+
+.keycloak-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.holi-input-field {
+  height: 30px;
+  line-height: 30px;
+
+  margin-top: 12.5px;
+  margin-bottom: 12.5px;
+  border: none;
+  background: none;
+  border-bottom: 2px solid $unholi-grey;
+  width: 100%;
+  font-family: "Open Sans";
+  font-size: $base-font-size;
+  transition: border-bottom-color ease-out $transition-speed;
+
+  -webkit-appearance: none;
+  border-radius: 0;
+
+  &:focus {
+    outline: none;
+    border-bottom: 2px solid $holi-sunrise;
+  }
+
+  &:hover:not(:focus) {
+    border-bottom-color: $holi-silver;
+
+    &::placeholder {
+      color: $holi-silver;
+    }
+  }
+
+  &::placeholder {
+    color: $unholi-grey;
+    transition: color ease-out $transition-speed;
+  }
+
+  &.error {
+  }
+}
+
+.holi-primary-btn {
+  background: $holi-deepsky;
+  max-width: 250px;
+  width: 100%;
+  height: 50px;
+  border: none;
+  line-height: 50px;
+  text-transform: uppercase;
+  border-radius: 25px;
+  color: $holi-white;
+  font-size: $base-font-size;
+  margin-top: 40px;
+  cursor: pointer;
+  transition: background-color ease-out $transition-speed;
+
+  -webkit-appearance: none;
+
+  &:focus,
+  &:hover {
+    outline: none;
+    background: darken($holi-deepsky, 10%);
+  }
+}
+
+.forgot-password-link {
+  font-weight: 600;
+}
+
+ol.login-config-totp {
+  padding-inline-start: 17px;
+
+  #kc-totp-secret-qr-code {
+    position: relative;
+    left: -20px;
+  }
+
+  .code {
+    font-family: "Roboto Mono";
+  }
+}
