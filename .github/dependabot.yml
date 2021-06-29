@@ -1,0 +1,29 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "04:00"
+  open-pull-requests-limit: 10
+  reviewers:
+  - hypery2k
+  assignees:
+  - hypery2k
+  ignore:
+  - dependency-name: "@toolisticon/ssl-hostinfo-prometheus-exporter"
+    versions:
+    - 1.4.4
+  - dependency-name: y18n
+    versions:
+    - 4.0.1
+    - 4.0.2
+  - dependency-name: eslint
+    versions:
+    - 7.19.0
+    - 7.20.0
+    - 7.21.0
+    - 7.23.0
+  - dependency-name: eslint-plugin-react
+    versions:
+    - 7.23.1

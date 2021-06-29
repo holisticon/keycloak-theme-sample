@@ -7,7 +7,7 @@
     "build:prod": "webpack --progress --colors --env prod --config webpack.config.js",
     "watch": "webpack --progress --colors --watch --config webpack.config.dev.js",
     "dist": "mkdirp dist && npm run build:prod && tar -czf dist/holisticon.tar.gz dist/holisticon/ && cp package.json dist/holisticon/",
-    "test": "npm run test:unit && npm run test:end2end",
+    "test": "npm run test:unit",
     "test:unit": "sass-lint src/sass/",
     "test:end2end": "mkdirp target && node bin/jasmine.js && npm run protractor --",
     "lint": "eslint \"test/**\" --cache",
