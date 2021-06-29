@@ -8,6 +8,38 @@ const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const outputFolder = 'dist/holisticon';
+const devMode = process.env.NODE_ENV === 'development';
+
+function copyList(entryPoint, outputFolder) {
+  let list = [
+      {
+          from: path.join(__dirname, `package.json`),
+          to: path.join(__dirname, `${outputFolder}`),
+      },
+      {
+          from: path.join(__dirname, `src/templates/${entryPoint}`),
+          to: path.join(__dirname, `${outputFolder}/${entryPoint}`),
+          ignore: ['*.js', '*.ts', '*.scss'],
+      },
+  ];
+  if (entryPoint != 'email') {
+    list = list.concat([
+        {
+            from: path.join(__dirname, `src/fonts`),
+            to: path.join(__dirname, `${outputFolder}/${entryPoint}/resources/fonts`),
+        },
+        {
+            from: path.join(__dirname, `node_modules/patternfly/dist/fonts`),
+            to: path.join(__dirname, `${outputFolder}/${entryPoint}/resources/fonts`),
+        },
+        {
+            from: path.join(__dirname, `src/images`),
+            to: path.join(__dirname, `${outputFolder}/${entryPoint}/resources/images`),
+        },
+    ]);
+  }
+  return list;
+}
 
 const commonConfig = (entryPoint) => {
     let config = {
@@ -47,24 +79,23 @@ const commonConfig = (entryPoint) => {
                     loader: "html-loader"
                 },
                 {
+                    test: /\.(jpe?g|png|gif)$/,
+                    loader: 'url-loader',
+                    options: {
+                        // Images larger than 100 KB won’t be inlined
+                        limit: 100 * 1024
+                    }
+                },
+                {
                     test: /\.(scss|css)$/,
 
                     use: [
-
-                        {
-                            loader: MiniCssExtractPlugin.loader,
-                            options: {
-                                // you can specify a publicPath here
-                                // by default it uses publicPath in webpackOptions.output
-                                publicPath: '../',
-                                hmr: process.env.NODE_ENV === 'development',
-                            },
-                        },
+                        // For production builds it's recommended to extract the CSS from your bundle being able to use parallel loading of CSS/JS resources later on.
+                        // This can be achieved by using the mini-css-extract-plugin, because it creates separate css files. For development mode (including webpack-dev-server)
+                        // you can use style-loader, because it injects CSS into the DOM using multiple
+                        devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
                         {
                             loader: 'css-loader',
-                            options: {
-                                url: false
-                            }
                         },
                         {
                             loader: 'resolve-url-loader'
@@ -73,15 +104,24 @@ const commonConfig = (entryPoint) => {
                             loader: 'sass-loader',
                             options: {
                                 "includePaths": [
-                                    require('path').resolve(__dirname, 'node_modules'),
-                                    require('path').resolve(__dirname, 'src/fonts'),
-                                    require('path').resolve(__dirname, 'src/images'),
                                     require('path').resolve(__dirname, 'node_modules/patternfly/dist/sass'),
                                     require('path').resolve(__dirname, 'node_modules/bootstrap-sass/assets/stylesheets'),
                                     require('path').resolve(__dirname, 'node_modules/font-awesome-sass/assets/stylesheets'),
                                 ]
                             },
+                        },
+                    ]
+                },
+                {
+                    test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                    use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                        name: '[name].[ext]',
+                        outputPath: 'fonts/'
                         }
+                    }
                     ]
                 }
             ]
@@ -98,30 +138,10 @@ const commonConfig = (entryPoint) => {
         plugins: [
             new CleanWebpackPlugin(),
             new webpack.BannerPlugin({
-                banner: () => `Copyright ${new Date().getFullYear()}`
+                banner: () => `Copyright ${new Date().getFullYear()} Holisticon AG`
             }),
-
             new webpack.EnvironmentPlugin({}),
             new Dotenv(),
-            new CopyPlugin([
-                {
-                    from: path.join(__dirname, `src/fonts`),
-                    to: path.join(__dirname, `${outputFolder}/${entryPoint}/resources/fonts`),
-                },
-                {
-                    from: path.join(__dirname, `node_modules/patternfly/dist/fonts`),
-                    to: path.join(__dirname, `${outputFolder}/${entryPoint}/resources/fonts`),
-                },
-                {
-                    from: path.join(__dirname, `src/images`),
-                    to: path.join(__dirname, `${outputFolder}/${entryPoint}/resources/images`),
-                },
-                {
-                    from: path.join(__dirname, `src/templates/${entryPoint}`),
-                    to: path.join(__dirname, `${outputFolder}/${entryPoint}`),
-                    ignore: ['*.js', '*.ts', '*.scss'],
-                },
-            ]),
         ],
 
         optimization: {
@@ -140,23 +160,33 @@ const commonConfig = (entryPoint) => {
             },
             minimizer: [],
         },
-    }
-    if (entryPoint != 'email') {
+    };
+    config.plugins.push(
+      new CopyPlugin(copyList(entryPoint, outputFolder))
+    );
+    if (entryPoint == 'email') {
+        config.plugins.push(new HtmlWebpackPlugin({
+            filename: `../../html/template.ftl`,
+            template: `./src/templates/${entryPoint}/html/template.ftl`,
+            inject: true,
+		    inlineSource: '.(js|css)$' // embed all javascript and css inline
+        }));
+    } else   {
         config.plugins.push(new HtmlWebpackPlugin({
             filename: `../../template.ftl`,
             template: `./src/templates/${entryPoint}/template.ftl`,
             inject: true,
             inlineSource: '.(css)$' // embed all css inline
         }));
-        config.plugins.push(new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // all options are optional
-            filename: '[name].css',
-            chunkFilename: '[id].css',
-            ignoreOrder: false, // Enable to remove warnings about conflicting order
-        }));
-        config.plugins.push(new HtmlWebpackInlineSourcePlugin());
     }
+    config.plugins.push(new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // all options are optional
+        filename: '[name].css',
+        chunkFilename: '[id].css',
+        ignoreOrder: false, // Enable to remove warnings about conflicting order
+    }));
+    config.plugins.push(new HtmlWebpackInlineSourcePlugin());
     return config;
 };
 

@@ -3,21 +3,21 @@
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 400;
-  src: url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-regular.eot"); /* IE9 Compat Modes */
+  src: url("#{$font-path}/open_sans/open-sans-v15-latin-regular.eot"); /* IE9 Compat Modes */
   src: local("Open Sans Regular"), local("OpenSans-Regular"),
-    url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-regular.eot?#iefix")
+    url("#{$font-path}/open_sans/open-sans-v15-latin-regular.eot?#iefix")
       format("embedded-opentype"),
     /* IE6-IE8 */
-      url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-regular.woff2")
+      url("#{$font-path}/open_sans/open-sans-v15-latin-regular.woff2")
       format("woff2"),
     /* Super Modern Browsers */
-      url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-regular.woff")
+      url("#{$font-path}/open_sans/open-sans-v15-latin-regular.woff")
       format("woff"),
     /* Modern Browsers */
-      url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-regular.ttf")
+      url("#{$font-path}/open_sans/open-sans-v15-latin-regular.ttf")
       format("truetype"),
     /* Safari, Android, iOS */
-      url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-regular.svg#OpenSans")
+      url("#{$font-path}/open_sans/open-sans-v15-latin-regular.svg#OpenSans")
       format("svg"); /* Legacy iOS */
 }
 
@@ -26,21 +26,21 @@
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 600;
-  src: url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-600.eot"); /* IE9 Compat Modes */
+  src: url("#{$font-path}/open_sans/open-sans-v15-latin-600.eot"); /* IE9 Compat Modes */
   src: local("Open Sans SemiBold"), local("OpenSans-SemiBold"),
-    url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-600.eot?#iefix")
+    url("#{$font-path}/open_sans/open-sans-v15-latin-600.eot?#iefix")
       format("embedded-opentype"),
     /* IE6-IE8 */
-      url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-600.woff2")
+      url("#{$font-path}/open_sans/open-sans-v15-latin-600.woff2")
       format("woff2"),
     /* Super Modern Browsers */
-      url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-600.woff")
+      url("#{$font-path}/open_sans/open-sans-v15-latin-600.woff")
       format("woff"),
     /* Modern Browsers */
-      url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-600.ttf")
+      url("#{$font-path}/open_sans/open-sans-v15-latin-600.ttf")
       format("truetype"),
     /* Safari, Android, iOS */
-      url("${url.resourcesPath}/fonts/open_sans/open-sans-v15-latin-600.svg#OpenSans")
+      url("#{$font-path}/open_sans/open-sans-v15-latin-600.svg#OpenSans")
       format("svg"); /* Legacy iOS */
 }
 
@@ -49,30 +49,30 @@
   font-family: "Roboto Mono";
   font-style: normal;
   font-weight: 400;
-  src: url("${url.resourcesPath}/fonts/roboto_mono/roboto-mono-v6-latin-regular.eot"); /* IE9 Compat Modes */
+  src: url("#{$font-path}/roboto_mono/roboto-mono-v6-latin-regular.eot"); /* IE9 Compat Modes */
   src: local("Roboto Mono"), local("RobotoMono-Regular"),
-    url("${url.resourcesPath}/fonts/roboto_mono/roboto-mono-v6-latin-regular.eot?#iefix")
+    url("#{$font-path}/roboto_mono/roboto-mono-v6-latin-regular.eot?#iefix")
       format("embedded-opentype"),
     /* IE6-IE8 */
-      url("${url.resourcesPath}/fonts/roboto_mono/roboto-mono-v6-latin-regular.woff2")
+      url("#{$font-path}/roboto_mono/roboto-mono-v6-latin-regular.woff2")
       format("woff2"),
     /* Super Modern Browsers */
-      url("${url.resourcesPath}/fonts/roboto_mono/roboto-mono-v6-latin-regular.woff")
+      url("#{$font-path}/roboto_mono/roboto-mono-v6-latin-regular.woff")
       format("woff"),
     /* Modern Browsers */
-      url("${url.resourcesPath}/fonts/roboto_mono/roboto-mono-v6-latin-regular.ttf")
+      url("#{$font-path}/roboto_mono/roboto-mono-v6-latin-regular.ttf")
       format("truetype"),
     /* Safari, Android, iOS */
-      url("${url.resourcesPath}/fonts/roboto_mono/roboto-mono-v6-latin-regular.svg#RobotoMono")
+      url("#{$font-path}/roboto_mono/roboto-mono-v6-latin-regular.svg#RobotoMono")
       format("svg"); /* Legacy iOS */
 }
 
 @font-face {
   font-family: "arrow-back";
-  src: url("${url.resourcesPath}/fonts/arrow-back.ttf?b7nrmq")
+  src: url("#{$font-path}/arrow-back.ttf")
       format("truetype"),
-    url("${url.resourcesPath}/fonts/arrow-back.woff?b7nrmq") format("woff"),
-    url("${url.resourcesPath}/fonts/arrow-back.svg?b7nrmq#arrow-back")
+    url("#{$font-path}/arrow-back.woff") format("woff"),
+    url("#{$font-path}/arrow-back.svg#arrow-back")
       format("svg");
   font-weight: normal;
   font-style: normal;

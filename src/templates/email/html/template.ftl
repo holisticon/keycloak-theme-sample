@@ -1,34 +1,6 @@
 <#macro htmlEmailLayout>
 <html>
 <head>
-<style type="text/css">
-	body {
-		color: #000;
-		font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
-	}
-
-	td {
-		line-height: 1.2;
-	}
-
-	.button {
-		border-bottom: solid 2px #003618;
-	}
-
-	.button td {
-		padding: 0;
-	}
-
-	.button a {
-		display: inline-block;
-		padding: 10px 15px;
-		text-decoration: none;
-	}
-
-	p, td {
-		font-size: 19px;
-	}
-</style>
 </head>
 <body text="#000000" bgcolor="#FFFFFF">
 <#if realmName??>
