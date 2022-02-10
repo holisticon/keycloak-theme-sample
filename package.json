@@ -63,7 +63,7 @@
     "lint-staged": "^5.0.0",
     "mini-css-extract-plugin": "^0.8.2",
     "mkdirp": "^0.5.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "prettier": "^1.8.2",
     "protractor": "^5.4.2",
     "puppeteer": "^1.15.0",
